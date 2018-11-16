@@ -1,0 +1,58 @@
+{
+  "name": "rollup-starter",
+  "version": "0.0.1",
+  "description": "Starter javascript package using rollup",
+  "main": "dist/countdown.cjs.js",
+  "module": "dist/countdown.esm.js",
+  "browser": "dist/countdown.umd.js",
+  "files": [
+    "dist"
+  ],
+  "repository": "github:richlewis42/rollup-starter",
+  "author": {
+    "name": "Rich Lewis",
+    "email": "contact@richlew.is",
+    "url": "https://richlew.is/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.1.5",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.4",
+    "jest": "^23.6.0",
+    "jest-html-reporter": "^2.4.2",
+    "jest-junit": "^5.2.0",
+    "lint-staged": "^8.0.4",
+    "prettier": "^1.15.2",
+    "rimraf": "^2.6.3",
+    "rollup": "^0.67.1",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "NODE_ENV=development rollup -c -w",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "yarn lint --fix",
+    "clean": "rimraf dist reports yarn-error.log"
+  }
+}
