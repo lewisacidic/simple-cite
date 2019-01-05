@@ -78,6 +78,27 @@ describe('Manager', () => {
     expect(cite2).toEqual('Reference 2')
   })
 
+  it('should include no-cite references in bibliography', () => {
+    manager.nocite(['b'])
+    expect(manager.bibliography()).toMatch(
+      `<div class="csl-bib-body">
+  <div class="csl-entry">Doe, J. (2017). Item B.</div>
+</div>`
+    )
+  })
+
+  it('should put no-cite references after cited referencces', () => {
+    manager.nocite(['b'])
+    const cite = manager.cite({
+      citationItems: [{ id: 'a' }]
+    })
+    expect(cite).toEqual('(Bloggs, 2016)')
+    expect(manager.bibliography()).toMatch(`<div class="csl-bib-body">
+  <div class="csl-entry">Bloggs, J. (2016). Item A.</div>
+  <div class="csl-entry">Doe, J. (2017). Item B.</div>
+</div>`)
+  })
+
   it('should change format on instantiation', () => {
     manager = new Manager({
       items: references,

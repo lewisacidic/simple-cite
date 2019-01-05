@@ -40,6 +40,25 @@ export default class Manager {
     return this.locale
   }
 
+  citeInText(citation) {
+    const numberedRefs =
+      this.engine.cslXml.dataObj.children.find(c => c.name === 'citation').attrs
+        .collapse === 'citation-number'
+    if (numberedRefs) {
+      citation.citationItems[0]['author-only'] = true
+      return this.cite(citation)
+    } else {
+      const result = this.engine.makeCitationCluster([
+        { id: citation.citationItems[0].id, 'author-only': true }
+      ])
+      Object.assign(citation.citationItems[0], {
+        'suppress-author': true,
+        'in-text': false
+      })
+      return [result, this.cite(citation)].join(' ')
+    }
+  }
+
   cite(citation) {
     const result = this.engine.processCitationCluster(
       citation,
@@ -50,6 +69,10 @@ export default class Manager {
       []
     )
     return result[1][0][1]
+  }
+
+  nocite(citeIds) {
+    this.engine.updateUncitedItems(citeIds)
   }
 
   bibliography() {
