@@ -1,14 +1,14 @@
 {
-  "name": "rollup-starter",
+  "name": "simple-cite",
   "version": "0.0.1",
-  "description": "Starter javascript package using rollup",
+  "description": "A simple package for generating citations and bibliographies",
   "main": "dist/countdown.cjs.js",
   "module": "dist/countdown.esm.js",
   "browser": "dist/countdown.umd.js",
   "files": [
     "dist"
   ],
-  "repository": "github:richlewis42/rollup-starter",
+  "repository": "github:richlewis42/simple-cite",
   "author": {
     "name": "Rich Lewis",
     "email": "contact@richlew.is",
@@ -16,8 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
-    "lodash": "^4.17.11"
+    "@babel/runtime": "^7.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
