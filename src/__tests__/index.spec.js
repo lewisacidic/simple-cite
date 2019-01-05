@@ -1,6 +1,8 @@
 import Manager from '..'
 
 import apa from './apa.csl'
+import vancouver from './vancouver.csl'
+
 import enGB from './locales-en-GB.xml'
 import references from './references'
 
@@ -45,6 +47,35 @@ describe('Manager', () => {
   <div class="csl-entry">Doe, J. (2017). Item B.</div>
 </div>`
     )
+  })
+
+  it('should do an in-text citation', () => {
+    const cite = manager.citeInText({
+      citationItems: [{ id: 'a' }]
+    })
+    expect(cite).toEqual('Bloggs (2016)')
+
+    const cite2 = manager.citeInText({
+      citationItems: [{ id: 'b' }]
+    })
+    expect(cite2).toEqual('Doe (2017)')
+  })
+
+  it('should do an in-text citation for numbered', () => {
+    manager = new Manager({
+      items: references,
+      style: vancouver,
+      locale: enGB
+    })
+    const cite = manager.citeInText({
+      citationItems: [{ id: 'a' }]
+    })
+    expect(cite).toEqual('Reference 1')
+
+    const cite2 = manager.citeInText({
+      citationItems: [{ id: 'b' }]
+    })
+    expect(cite2).toEqual('Reference 2')
   })
 
   it('should change format on instantiation', () => {
