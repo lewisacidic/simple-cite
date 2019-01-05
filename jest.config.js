@@ -1,6 +1,8 @@
 module.exports = {
   transform: {
-    '^.+\\.js$': 'babel-jest'
+    '^.+\\.js$': 'babel-jest',
+    '^.+\\.csl$': 'jest-raw-loader',
+    '^.+\\.xml$': 'jest-raw-loader'
   },
   testRegex: '.+\\.spec\\.js$',
   testPathIgnorePatterns: ['node_modules', 'dist'],
@@ -24,6 +26,6 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js'],
-  coverageReporters: ['text', 'html'],
+  coverageReporters: ['text', 'lcov', 'html'],
   coverageDirectory: 'reports/coverage'
 }
