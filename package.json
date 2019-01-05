@@ -2,9 +2,9 @@
   "name": "simple-cite",
   "version": "0.0.1",
   "description": "A simple package for generating citations and bibliographies",
-  "main": "dist/countdown.cjs.js",
-  "module": "dist/countdown.esm.js",
-  "browser": "dist/countdown.umd.js",
+  "main": "dist/simple-cite.cjs.js",
+  "module": "dist/simple-cite.esm.js",
+  "browser": "dist/simple-cite.umd.js",
   "files": [
     "dist"
   ],

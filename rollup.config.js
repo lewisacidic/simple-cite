@@ -25,7 +25,8 @@ export default [
   },
   {
     input: 'src/index.js',
-    external: ['lodash'],
+    external: id =>
+      /^(@babel\/runtime|core-js)/.test(id) || ['citeproc'].includes(id),
     output: [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' }
