@@ -13,11 +13,10 @@ export default [
   },
   {
     id: 'c',
+    type: 'chapter',
     title: 'Item C',
-    author: [
-      { given: 'John', family: 'Doe' },
-      { given: 'Joseph', family: 'Bloggs' }
-    ],
-    issued: { 'date-parts': [[2018]] }
+    'container-title': 'Book C',
+    author: [{ given: 'John', family: 'Doe' }],
+    issued: { 'date-parts': [[2018, 6]] }
   }
 ]
