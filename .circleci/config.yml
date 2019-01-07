@@ -21,7 +21,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-      - run: yarn test
+      - run: yarn ci
 
       - store_artifacts:
           path: reports

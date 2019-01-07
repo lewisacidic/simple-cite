@@ -2,6 +2,10 @@
 
 A simple package for generating citations and bibliographies, wrapping the excellent [`citeproc-js`](https://citeproc-js.readthedocs.io/en/latest/).
 
+[version]: https://flat.badgen.net/npm/v/simple-cite
+[license]: https://flat.badgen.net/badge/license/MIT/blue
+[modules]: https://flat.badgen.net/badge/package/umd|cjs|esm
+
 ## Install
 
 Download the package from NPM using [`npm`](https://npmjs.org):
