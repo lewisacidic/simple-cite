@@ -21,22 +21,19 @@ export default class Processor {
     this._format = fmt
   }
 
-  citeInText(citation) {
+  citeInText(citationItem) {
     const numberedRefs =
       this.engine.cslXml.dataObj.children.find(c => c.name === 'citation').attrs
         .collapse === 'citation-number'
     if (numberedRefs) {
-      citation.citationItems[0]['author-only'] = true
-      return this.cite(citation)
+      citationItem['author-only'] = true
+      return this.cite({ citationItems: [citationItem] })
     } else {
       const result = this.engine.makeCitationCluster([
-        { id: citation.citationItems[0].id, 'author-only': true }
+        { id: citationItem.id, 'author-only': true }
       ])
-      Object.assign(citation.citationItems[0], {
-        'suppress-author': true,
-        'in-text': false
-      })
-      return [result, this.cite(citation)].join(' ')
+      citationItem['suppress-author'] = true
+      return [result, this.cite({ citationItems: [citationItem] })].join(' ')
     }
   }
 

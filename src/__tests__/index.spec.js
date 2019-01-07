@@ -27,10 +27,15 @@ describe('Processor', () => {
     expect(processor.engine).toBeInstanceOf(CSL.Engine)
   })
 
+  it('should provide the current format as a property', () => {
+    expect(processor.format).toEqual('text')
+  })
+
   it('should allow format to be changed', () => {
     processor.cite({ citationItems: [{ id: 'a' }] })
     expect(processor.bibliography()).toMatch(`Bloggs, J. (2016). Item A.`)
     processor.format = 'html'
+    expect(processor.format).toEqual('html')
     expect(processor.bibliography()).toMatch(
       `<div class="csl-bib-body">
   <div class="csl-entry">Bloggs, J. (2016). Item A.</div>
@@ -150,21 +155,21 @@ const styleSuite = ({
     })
 
     it('should do an in-text citation', () => {
-      const citeA = processor.citeInText({ citationItems: [{ id: 'a' }] })
+      const citeA = processor.citeInText({ id: 'a' })
       expect(citeA).toEqual(inText[0])
 
-      const citeB = processor.citeInText({ citationItems: [{ id: 'b' }] })
+      const citeB = processor.citeInText({ id: 'b' })
       expect(citeB).toEqual(inText[1])
     })
 
     it('should add in-text citations to bibliography', () => {
-      processor.citeInText({ citationItems: [{ id: 'a' }] })
+      processor.citeInText({ id: 'a' })
       expect(processor.bibliography()).toEqual(inTextBib)
     })
 
     it('should work with normal and in-text citations', () => {
       processor.cite({ citationItems: [{ id: 'a' }] })
-      processor.citeInText({ citationItems: [{ id: 'b' }] })
+      processor.citeInText({ id: 'b' })
 
       expect(processor.bibliography()).toEqual(normAndInText)
     })
