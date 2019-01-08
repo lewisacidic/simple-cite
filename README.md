@@ -1,10 +1,27 @@
-# simple-cite
+<p align="center">
+  <img src="static/logo.png" alt="simple-cite" />
+</p>
 
-A simple package for generating citations and bibliographies, wrapping the excellent [`citeproc-js`](https://citeproc-js.readthedocs.io/en/latest/).
-
-[version]: https://flat.badgen.net/npm/v/simple-cite
-[license]: https://flat.badgen.net/badge/license/MIT/blue
-[modules]: https://flat.badgen.net/badge/package/umd|cjs|esm
+<p align="center">
+  <a href="https://wwww.npmjs.com/package/simple-cite">
+    <img src="https://flat.badgen.net/npm/v/simple-cite" alt="NPM version" />
+  </a>
+  <a href="https://wwww.npmjs.com/package/simple-cite">
+    <img src="https://flat.badgen.net/badge/module/umd,cjs,esm" alt="module formats" />
+  </a>
+  <a href="https://circleci.com/gh/richlewis42/simple-cite">
+    <img src="https://flat.badgen.net/circleci/github/richlewis42/simple-cite" alt="status" />
+  </a>
+  <a href="https://codecov.io/gh/richlewis42/simple-cite">
+    <img src="https://flat.badgen.net/codecov/c/github/richlewis42/simple-cite" alt="coverage" />
+  </a>  
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://flat.badgen.net/badge/license/MIT/blue" alt="license" />
+  </a>
+</p>
+<p align="center">
+A simple package for generating citations and bibliographies, wrapping the excellent <a href="https://citeproc-js.readthedocs.io/en/latest/"><code>citeproc-js</code></a>.
+</p>
 
 ## Install
 
