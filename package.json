@@ -8,6 +8,14 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "citation",
+    "bibliography",
+    "academic writing",
+    "citation style language",
+    "csl",
+    "citeproc-js"
+  ],
   "repository": "github:richlewis42/simple-cite",
   "author": {
     "name": "Rich Lewis",
