@@ -1,10 +1,10 @@
 import Processor from '..'
 
-import apa from './apa.csl'
-import vancouver from './vancouver.csl'
+import apa from 'style-apa'
+import vancouver from 'style-vancouver'
 
-import enGB from './locales-en-GB.xml'
-import esES from './locales-es-ES.xml'
+import enGB from 'locale-en-gb'
+import esES from 'locale-es-es'
 
 import references from './references'
 

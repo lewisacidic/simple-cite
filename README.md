@@ -28,13 +28,13 @@ A simple package for generating citations and bibliographies, wrapping the excel
 Download the package from NPM using [`npm`](https://npmjs.org):
 
 ```shell
-npm install --save simple-cite @citation-style-language/{style-apa,locale-en-US}
+npm install --save simple-cite @citation/{style-apa,locale-en-US}
 ```
 
 or [yarn](https://yarnpkg.com/):
 
 ```shell
-yarn add simple-cite @citation-style-language/{style-apa,locale-en-US}
+yarn add simple-cite @citation/{style-apa,locale-en-US}
 ```
 
 ## Simple Usage
@@ -45,10 +45,10 @@ Import the citation processor from the package, configure it with a CSL [style](
 import Processor from 'simple-cite'
 
 // citation formatting configuration
-import style from '@citation-style-language/style-apa'
+import style from '@citation/style-apa'
 
 // localization configuration
-import locale from '@citation-style-language/locale-en-US'
+import locale from '@citation/locale-en-US'
 
 // a list of citable items with relevant metadata
 import items from './references'
@@ -152,8 +152,8 @@ For example,
 ### Citation Styles
 
 The CSL style may be specified using either the XML-based Citation Style Language, or a derived JSON representation.
-These may be found for a great many journals in the [official CSL style repository](https://github.com/citation-style-language/styles), or obtained as a JavaScript package hosted on NPM under the scope `@citation-style-language/style-*`.
+These may be found for a great many journals in the [official CSL style repository](https://github.com/citation-style-language/styles), or obtained as a JavaScript package hosted on NPM under the scope `@citation/style-*`.
 
 ### Citation Locales
 
-The CSL locale may be specified in the same way, and obtained from the [official CSL locale repository](https://github.com/citation-style-language/locales), or obtained from NPM under the scope `@citation-style-language/locale-*`.
+The CSL locale may be specified in the same way, and obtained from the [official CSL locale repository](https://github.com/citation-style-language/locales), or obtained from NPM under the scope `@citation/locale-*`.

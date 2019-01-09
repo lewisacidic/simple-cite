@@ -3792,6 +3792,16 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+locale-en-gb@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/locale-en-gb/-/locale-en-gb-0.0.1.tgz#32cb03472fea38b503cfa7319e0608e6d2669cfd"
+  integrity sha512-1hvhaWNM/uKsNdFKTFH9AUhukzIpvAhJkjkQVYdIF4TI4L/16Y1WSQvIhRJF2TIGWkIC/OK2BDSTePPn3RGnPA==
+
+locale-es-es@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/locale-es-es/-/locale-es-es-0.0.1.tgz#2c56e217d229721f9f0b39171cbea416225df172"
+  integrity sha512-XgoIUT3KRRE/ElRYk3wX0LOq53z+0lq3izwgk/j43708D0Y8E9RBV9Ka8NlEGPPzinOfJuiKUdhBCRitvZWIIw==
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -5523,6 +5533,16 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+
+style-apa@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/style-apa/-/style-apa-0.0.1.tgz#81a58c68343ed654b525261d02255543d7e05e66"
+  integrity sha512-uJBgqGsPxpIFtbICc7vKVoDqjnJDanlmVPBfCp1fH71f9TGdJJFvMaoRGRGwdg9YhEG7eGFso8A51nmM3BtvuQ==
+
+style-vancouver@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/style-vancouver/-/style-vancouver-0.0.1.tgz#98858c85707fd9216b5944d259a53e9c66848701"
+  integrity sha512-vEZPBstdK9H0SCkSJBZTSzqUNm4+jBM5PeBv/kU5FdzdGb5ZuoU8mp5V1bN3XIR/1JW9ZL1T7L49HdIgGkbPkg==
 
 supports-color@^2.0.0:
   version "2.0.0"
