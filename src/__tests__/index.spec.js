@@ -42,6 +42,31 @@ describe('Processor', () => {
 </div>`
     )
   })
+
+  it('should add title to bibliography in text format ', () => {
+    processor.noCite(['a'])
+    expect(processor.bibliography({ title: true })).toEqual(
+      'References\nBloggs, J. (2016). Item A.\n'
+    )
+  })
+
+  it('should add title to bibliography in text format ', () => {
+    processor.format = 'html'
+    processor.noCite(['a'])
+    expect(processor.bibliography({ title: true })).toEqual(
+      `<div class="csl-bib-body">
+  <h2>References</h2>
+  <div class="csl-entry">Bloggs, J. (2016). Item A.</div>
+</div>`
+    )
+  })
+
+  it('should allow the title to be specified', () => {
+    processor.noCite(['a'])
+    expect(processor.bibliography({ title: 'Example Title' })).toEqual(
+      'Example Title\nBloggs, J. (2016). Item A.\n'
+    )
+  })
 })
 
 describe('locales', () => {

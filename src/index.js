@@ -53,8 +53,20 @@ export default class Processor {
     this.engine.updateUncitedItems(citeIds)
   }
 
-  bibliography() {
+  bibliography({ title } = {}) {
     const [params, data] = this.engine.makeBibliography()
+    if (title) {
+      let ref =
+        typeof title === 'string'
+          ? title
+          : this.engine.getTerm('reference', null, 1)
+      ref = ref[0].toUpperCase() + ref.slice(1)
+      if (this.format === 'html') {
+        params.bibstart = params.bibstart + '  <h2>' + ref + '</h2>\n'
+      } else {
+        params.bibstart = ref + '\n' + params.bibstart
+      }
+    }
     return [params.bibstart, ...data, params.bibend].join('')
   }
 }
