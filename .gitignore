@@ -1,3 +1,6 @@
+# configs
+.vscode
+
 # dependencies
 node_modules
 
