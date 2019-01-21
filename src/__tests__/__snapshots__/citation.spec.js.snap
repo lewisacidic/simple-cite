@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`citation apa html should cite multiple times 1`] = `"(Bloggs, 2016)"`;
+
+exports[`citation apa html should cite multiple times 2`] = `"(Doe, 2017)"`;
+
+exports[`citation apa html should cite multiple times 3`] = `"(Smith, 2018)"`;
+
+exports[`citation apa html should disambiguate names between citations 1`] = `"(John Doe, n.d.)"`;
+
+exports[`citation apa html should disambiguate names between citations 2`] = `"(Jane Doe, n.d.)"`;
+
+exports[`citation apa html should disambiguate names within a citation 1`] = `"(Jane Doe, n.d.; John Doe, n.d.)"`;
+
+exports[`citation apa html should render a citation 1`] = `"(Bloggs, 2016)"`;
+
+exports[`citation apa html should render a citation for many authors 1`] = `"(Williams et al., 2015)"`;
+
+exports[`citation apa html should render a citation for two authors 1`] = `"(Thomas &#38; Jones, 2014)"`;
+
+exports[`citation apa html should render a citation with author only 1`] = `"Bloggs"`;
+
+exports[`citation apa html should render a citation with author suppressed 1`] = `"(2016)"`;
+
+exports[`citation apa html should render a citation with label and locator 1`] = `"(Bloggs, 2016, op. 2)"`;
+
+exports[`citation apa html should render a citation with locator 1`] = `"(Bloggs, 2016, pp. 1–3)"`;
+
+exports[`citation apa html should render a citation with prefix 1`] = `"(see Bloggs, 2016)"`;
+
+exports[`citation apa html should render a citation with suffix 1`] = `"(Bloggs, 2016 for example)"`;
+
+exports[`citation apa html should render a citation with two cite-items 1`] = `"(Bloggs, 2016; Doe, 2017)"`;
+
+exports[`citation apa html should render a potential group/collapse 1`] = `"(Bloggs, 2016; Doe, 2000, 2005)"`;
+
+exports[`citation apa html should render an in narrative citation 1`] = `"Bloggs (2016)"`;
+
+exports[`citation apa text should cite multiple times 1`] = `"(Bloggs, 2016)"`;
+
+exports[`citation apa text should cite multiple times 2`] = `"(Doe, 2017)"`;
+
+exports[`citation apa text should cite multiple times 3`] = `"(Smith, 2018)"`;
+
+exports[`citation apa text should disambiguate names between citations 1`] = `"(John Doe, n.d.)"`;
+
+exports[`citation apa text should disambiguate names between citations 2`] = `"(Jane Doe, n.d.)"`;
+
+exports[`citation apa text should disambiguate names within a citation 1`] = `"(Jane Doe, n.d.; John Doe, n.d.)"`;
+
+exports[`citation apa text should render a citation 1`] = `"(Bloggs, 2016)"`;
+
+exports[`citation apa text should render a citation for many authors 1`] = `"(Williams et al., 2015)"`;
+
+exports[`citation apa text should render a citation for two authors 1`] = `"(Thomas & Jones, 2014)"`;
+
+exports[`citation apa text should render a citation with author only 1`] = `"Bloggs"`;
+
+exports[`citation apa text should render a citation with author suppressed 1`] = `"(2016)"`;
+
+exports[`citation apa text should render a citation with label and locator 1`] = `"(Bloggs, 2016, op. 2)"`;
+
+exports[`citation apa text should render a citation with locator 1`] = `"(Bloggs, 2016, pp. 1–3)"`;
+
+exports[`citation apa text should render a citation with prefix 1`] = `"(see Bloggs, 2016)"`;
+
+exports[`citation apa text should render a citation with suffix 1`] = `"(Bloggs, 2016 for example)"`;
+
+exports[`citation apa text should render a citation with two cite-items 1`] = `"(Bloggs, 2016; Doe, 2017)"`;
+
+exports[`citation apa text should render a potential group/collapse 1`] = `"(Bloggs, 2016; Doe, 2000, 2005)"`;
+
+exports[`citation apa text should render an in narrative citation 1`] = `"Bloggs (2016)"`;
+
+exports[`citation vancouver html should cite multiple times 1`] = `"(1)"`;
+
+exports[`citation vancouver html should cite multiple times 2`] = `"(2)"`;
+
+exports[`citation vancouver html should cite multiple times 3`] = `"(3)"`;
+
+exports[`citation vancouver html should disambiguate names between citations 1`] = `"(1)"`;
+
+exports[`citation vancouver html should disambiguate names between citations 2`] = `"(2)"`;
+
+exports[`citation vancouver html should disambiguate names within a citation 1`] = `"(1,2)"`;
+
+exports[`citation vancouver html should render a citation 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation for many authors 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation for two authors 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation with author only 1`] = `"Reference 1"`;
+
+exports[`citation vancouver html should render a citation with author suppressed 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation with label and locator 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation with locator 1`] = `"(1)"`;
+
+exports[`citation vancouver html should render a citation with prefix 1`] = `"(see 1)"`;
+
+exports[`citation vancouver html should render a citation with suffix 1`] = `"(1 for example)"`;
+
+exports[`citation vancouver html should render a citation with two cite-items 1`] = `"(1,2)"`;
+
+exports[`citation vancouver html should render a potential group/collapse 1`] = `"(1–3)"`;
+
+exports[`citation vancouver html should render an in narrative citation 1`] = `"Reference 1"`;
+
+exports[`citation vancouver text should cite multiple times 1`] = `"(1)"`;
+
+exports[`citation vancouver text should cite multiple times 2`] = `"(2)"`;
+
+exports[`citation vancouver text should cite multiple times 3`] = `"(3)"`;
+
+exports[`citation vancouver text should disambiguate names between citations 1`] = `"(1)"`;
+
+exports[`citation vancouver text should disambiguate names between citations 2`] = `"(2)"`;
+
+exports[`citation vancouver text should disambiguate names within a citation 1`] = `"(1,2)"`;
+
+exports[`citation vancouver text should render a citation 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation for many authors 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation for two authors 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation with author only 1`] = `"Reference 1"`;
+
+exports[`citation vancouver text should render a citation with author suppressed 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation with label and locator 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation with locator 1`] = `"(1)"`;
+
+exports[`citation vancouver text should render a citation with prefix 1`] = `"(see 1)"`;
+
+exports[`citation vancouver text should render a citation with suffix 1`] = `"(1 for example)"`;
+
+exports[`citation vancouver text should render a citation with two cite-items 1`] = `"(1,2)"`;
+
+exports[`citation vancouver text should render a potential group/collapse 1`] = `"(1–3)"`;
+
+exports[`citation vancouver text should render an in narrative citation 1`] = `"Reference 1"`;
