@@ -99,6 +99,7 @@ const styleSuite = ({
   style,
   singleCite,
   multiCite,
+  disambig,
   bibliography,
   prefix,
   locator,
@@ -123,17 +124,23 @@ const styleSuite = ({
 
     it('should cite once', () => {
       const cite = processor.cite({ citationItems: [{ id: 'a' }] })
-      expect(cite).toEqual(singleCite)
+      expect(cite.value).toEqual(singleCite)
     })
 
     it('should cite more than once', () => {
       const citeA = processor.cite({ citationItems: [{ id: 'a' }] })
-      expect(citeA).toEqual(multiCite[0])
+      expect(citeA.value).toEqual(multiCite[0])
 
       const citeB = processor.cite({ citationItems: [{ id: 'b' }] })
-      expect(citeB).toEqual(multiCite[1])
+      expect(citeB.value).toEqual(multiCite[1])
     })
 
+    it('should disambiguate citations', () => {
+      const citeA = processor.cite({ citationItems: [{ id: 'b' }] })
+      const citeB = processor.cite({ citationItems: [{ id: 'c' }] })
+      expect(citeA.value).toEqual(disambig[0])
+      expect(citeB.value).toEqual(disambig[1])
+    })
     it('should create a bibliography from cited items', () => {
       processor.cite({ citationItems: [{ id: 'a' }] })
       expect(processor.bibliography()).toEqual(bibliography[0])
@@ -146,21 +153,21 @@ const styleSuite = ({
       const cite = processor.cite({
         citationItems: [{ id: 'a', prefix: 'see' }]
       })
-      expect(cite).toEqual(prefix)
+      expect(cite.value).toEqual(prefix)
     })
 
     it('should add a locator', () => {
       const cite = processor.cite({
         citationItems: [{ id: 'a', locator: 'pp. 42--44' }]
       })
-      expect(cite).toEqual(locator)
+      expect(cite.value).toEqual(locator)
     })
 
     it('should add a suffix', () => {
       const cite = processor.cite({
         citationItems: [{ id: 'a', suffix: 'and *passim*' }]
       })
-      expect(cite).toEqual(suffix)
+      expect(cite.value).toEqual(suffix)
     })
 
     it('should add both locator and suffix at once', () => {
@@ -169,22 +176,22 @@ const styleSuite = ({
           { id: 'a', locator: 'pp. 42--44', suffix: 'and *passim*' }
         ]
       })
-      expect(cite).toEqual(both)
+      expect(cite.value).toEqual(both)
     })
 
     it('should suppress author', () => {
       const cite = processor.cite({
         citationItems: [{ id: 'a', 'suppress-author': true }]
       })
-      expect(cite).toEqual(suppressAuthor)
+      expect(cite.value).toEqual(suppressAuthor)
     })
 
     it('should do an in-text citation', () => {
       const citeA = processor.citeInText({ id: 'a' })
-      expect(citeA).toEqual(inText[0])
+      expect(citeA.value).toEqual(inText[0])
 
       const citeB = processor.citeInText({ id: 'b' })
-      expect(citeB).toEqual(inText[1])
+      expect(citeB.value).toEqual(inText[1])
     })
 
     it('should add in-text citations to bibliography', () => {
@@ -217,6 +224,7 @@ const apaData = {
   style: apa,
   singleCite: '(Bloggs, 2016)',
   multiCite: ['(Bloggs, 2016)', '(Doe, 2017)'],
+  disambig: ['(Jane Doe, 2017)', '(John Doe, 2018)'],
   bibliography: [
     'Bloggs, J. (2016). Item A.\n',
     'Bloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n'
@@ -240,6 +248,7 @@ const vancouverData = {
   style: vancouver,
   singleCite: '(1)',
   multiCite: ['(1)', '(2)'],
+  disambig: ['(1)', '(2)'],
   bibliography: [
     '1. Bloggs J. Item A. 2016. \n',
     '1. Bloggs J. Item A. 2016. \n2. Doe J. Item B. 2017. \n'

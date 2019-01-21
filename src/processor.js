@@ -1,6 +1,9 @@
 import citeproc from 'citeproc'
+import Citation from './citation'
 
 export default class Processor {
+  citations = []
+
   constructor({ items, style, locale, format = 'text' }) {
     const itemLookup = {}
     items.forEach(item => (itemLookup[item.id] = item))
@@ -21,32 +24,21 @@ export default class Processor {
     this._format = fmt
   }
 
-  citeInText(citationItem) {
-    const numberedRefs =
-      this.engine.cslXml.dataObj.children.find(c => c.name === 'citation').attrs
-        .collapse === 'citation-number'
-    if (numberedRefs) {
-      citationItem['author-only'] = true
-      return this.cite({ citationItems: [citationItem] })
-    } else {
-      const result = this.engine.makeCitationCluster([
-        { id: citationItem.id, 'author-only': true }
-      ])
-      citationItem['suppress-author'] = true
-      return [result, this.cite({ citationItems: [citationItem] })].join(' ')
-    }
-  }
-
   cite(citation) {
+    citation = new Citation(citation)
+    const clone = citation.clone()
+
     const result = this.engine.processCitationCluster(
-      citation,
-      this.engine.registry.citationreg.citationByIndex.map(citation => [
-        citation.citationID,
-        citation.properties.noteIndex
-      ]),
+      clone,
+      this.citations.map(c => [c.id, c.properties.noteIndex]),
       []
     )
-    return result[1][0][1]
+
+    citation.id = clone.citationID
+    this.citations.push(citation)
+
+    result[1].forEach(([idx, value]) => (this.citations[idx].value = value))
+    return citation
   }
 
   noCite(citeIds) {
