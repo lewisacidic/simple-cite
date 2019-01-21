@@ -1,5 +1,6 @@
 import citeproc from 'citeproc'
 import Citation from './citation'
+import Bibliography from './bibliography'
 
 export default class Processor {
   citations = []
@@ -56,6 +57,21 @@ export default class Processor {
     )
   }
 
+  term({ name, plural = false, capitalize = false }) {
+    const term = this.engine.getTerm(name, null, Number(plural))
+    return capitalize ? term.charAt(0).toUpperCase() + term.substr(1) : term
+  }
+
+  makeBibliography() {
+    const [params, data] = this.engine.makeBibliography()
+    return {
+      start: params.bibstart,
+      data,
+      end: params.bibend,
+      ids: params.entry_ids
+    }
+  }
+
   cite(citation) {
     return this.process(new Citation(citation))
   }
@@ -66,19 +82,6 @@ export default class Processor {
   }
 
   bibliography({ title } = {}) {
-    const [params, data] = this.engine.makeBibliography()
-    if (title) {
-      let ref =
-        typeof title === 'string'
-          ? title
-          : this.engine.getTerm('reference', null, 1)
-      ref = ref[0].toUpperCase() + ref.slice(1)
-      if (this.format === 'html') {
-        params.bibstart = params.bibstart + '  <h2>' + ref + '</h2>\n'
-      } else {
-        params.bibstart = ref + '\n' + params.bibstart
-      }
-    }
-    return [params.bibstart, ...data, params.bibend].join('')
+    return new Bibliography({ title, processor: this }).rerender()
   }
 }

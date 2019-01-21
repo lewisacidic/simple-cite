@@ -33,45 +33,69 @@ describe('Processor', () => {
 
   it('should allow format to be changed', () => {
     processor.cite({ citationItems: [{ id: 'a' }] })
-    expect(processor.bibliography()).toMatch(`Bloggs, J. (2016). Item A.`)
+    expect(processor.bibliography().value).toMatch(`Bloggs, J. (2016). Item A.`)
     processor.format = 'html'
     expect(processor.format).toEqual('html')
-    expect(processor.bibliography()).toMatch(
+    expect(processor.bibliography().value).toMatch(
       `<div class="csl-bib-body">
   <div class="csl-entry">Bloggs, J. (2016). Item A.</div>
 </div>`
     )
   })
 
-  it('should add title to bibliography in text format ', () => {
-    processor.noCite(['a'])
-    expect(processor.bibliography({ title: true })).toEqual(
-      'References\nBloggs, J. (2016). Item A.\n'
+  it('should provide localization terms', () => {
+    expect(processor.term({ name: 'reference' })).toEqual('reference')
+  })
+
+  it('should pluralize terms', () => {
+    expect(processor.term({ name: 'reference', plural: true })).toEqual(
+      'references'
     )
   })
 
-  it('should add title to bibliography in text format ', () => {
-    processor.format = 'html'
+  it('should capitalize terms', () => {
+    expect(processor.term({ name: 'reference', capitalize: true })).toEqual(
+      'Reference'
+    )
+  })
+
+  it('should optionally add localized title to bibliography in text format', () => {
+    processor.noCite(['a', 'b'])
+    expect(processor.bibliography({ title: true }).value).toEqual(
+      'References\n\nBloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n'
+    )
+  })
+
+  it('should get plural right for title', () => {
     processor.noCite(['a'])
-    expect(processor.bibliography({ title: true })).toEqual(
+    expect(processor.bibliography({ title: true }).value).toEqual(
+      'Reference\n\nBloggs, J. (2016). Item A.\n'
+    )
+  })
+
+  it('should add title to bibliography in html format ', () => {
+    processor.format = 'html'
+    processor.noCite(['a', 'b'])
+    expect(processor.bibliography({ title: true }).value).toEqual(
       `<div class="csl-bib-body">
-  <h2>References</h2>
+  <h2 class="csl-bib-title">References</h2>
   <div class="csl-entry">Bloggs, J. (2016). Item A.</div>
+  <div class="csl-entry">Doe, J. (2017). Item B.</div>
 </div>`
     )
   })
 
   it('should allow the title to be specified', () => {
     processor.noCite(['a'])
-    expect(processor.bibliography({ title: 'Example Title' })).toEqual(
-      'Example Title\nBloggs, J. (2016). Item A.\n'
+    expect(processor.bibliography({ title: 'Example Title' }).value).toEqual(
+      'Example Title\n\nBloggs, J. (2016). Item A.\n'
     )
   })
 
   it('should allow multiple calls to noCite to add more references', () => {
     processor.noCite(['a'])
     processor.noCite(['b'])
-    expect(processor.bibliography()).toEqual(
+    expect(processor.bibliography().value).toEqual(
       'Bloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n'
     )
   })
@@ -85,7 +109,7 @@ describe('locales', () => {
       locale: enGB
     })
     processor.cite({ citationItems: [{ id: 'c' }] })
-    expect(processor.bibliography()).toEqual(
+    expect(processor.bibliography().value).toEqual(
       'Doe, J. (2018). Item C. In Book C.\n'
     )
   })
@@ -96,7 +120,7 @@ describe('locales', () => {
       locale: esES
     })
     processor.cite({ citationItems: [{ id: 'c' }] })
-    expect(processor.bibliography()).toEqual(
+    expect(processor.bibliography().value).toEqual(
       'Doe, J. (2018). Item C. En Book C.\n'
     )
   })
@@ -152,10 +176,10 @@ const styleSuite = ({
     })
     it('should create a bibliography from cited items', () => {
       processor.cite({ citationItems: [{ id: 'a' }] })
-      expect(processor.bibliography()).toEqual(bibliography[0])
+      expect(processor.bibliography().value).toEqual(bibliography[0])
 
       processor.cite({ citationItems: [{ id: 'b' }] })
-      expect(processor.bibliography()).toEqual(bibliography[1])
+      expect(processor.bibliography().value).toEqual(bibliography[1])
     })
 
     it('should add a prefix', () => {
@@ -223,7 +247,7 @@ const styleSuite = ({
         citationItems: [{ id: 'a' }],
         properties: { 'in-narrative': true }
       })
-      expect(processor.bibliography()).toEqual(inNarrativeBib)
+      expect(processor.bibliography().value).toEqual(inNarrativeBib)
     })
 
     it('should work with normal and in-narrative citations', () => {
@@ -233,18 +257,18 @@ const styleSuite = ({
         properties: { 'in-narrative': true }
       })
 
-      expect(processor.bibliography()).toEqual(normAndInText)
+      expect(processor.bibliography().value).toEqual(normAndInText)
     })
 
     it('should include no-cite references in bibliography', () => {
       processor.noCite(['b'])
-      expect(processor.bibliography()).toEqual(noCite)
+      expect(processor.bibliography().value).toEqual(noCite)
     })
 
     it('should put no-cite references after cited references', () => {
       processor.noCite(['b'])
       processor.cite({ citationItems: [{ id: 'a' }] })
-      expect(processor.bibliography()).toEqual(noCiteAndNormal)
+      expect(processor.bibliography().value).toEqual(noCiteAndNormal)
     })
   })
 }
