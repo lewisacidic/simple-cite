@@ -34,12 +34,12 @@ export default class Processor {
       []
     )
 
+    citation.processor = this
     citation.id = clone.citationID
     this.citations.push(citation)
 
-    result[1].forEach(
-      ([idx]) => (this.citations[idx].value = this.preview(this.citations[idx]))
-    )
+    result[1].forEach(([idx]) => this.citations[idx].rerender())
+
     return citation
   }
 
@@ -48,24 +48,12 @@ export default class Processor {
     const background = this.citations.map(c => [c.id, c.properties.noteIndex])
     const clone = citation.clone()
 
-    if (citation.properties['in-narrative']) {
-      clone.properties['in-narrative'] = false
-      clone.citationItems = [
-        { id: citation.citationItems[0].id, 'author-only': true }
-      ]
-      const authorOnly = this.preview(clone)
-      clone.citationItems = [
-        { ...citation.citationItems[0], 'suppress-author': true }
-      ]
-      return [authorOnly, this.preview(clone)].join(' ').trim()
-    } else {
-      return this.engine.previewCitationCluster(
-        clone,
-        background.slice(0, index),
-        background.slice(index),
-        this.format
-      )
-    }
+    return this.engine.previewCitationCluster(
+      clone,
+      background.slice(0, index),
+      background.slice(index),
+      this.format
+    )
   }
 
   cite(citation) {
