@@ -3,6 +3,7 @@ import Citation from './citation'
 
 export default class Processor {
   citations = []
+  noCites = []
 
   constructor({ items, style, locale, format = 'text' }) {
     const itemLookup = {}
@@ -72,6 +73,7 @@ export default class Processor {
   }
 
   noCite(citeIds) {
+    this.noCites = this.noCites.concat(citeIds)
     this.engine.updateUncitedItems(citeIds)
   }
 

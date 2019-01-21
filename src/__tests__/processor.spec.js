@@ -67,6 +67,14 @@ describe('Processor', () => {
       'Example Title\nBloggs, J. (2016). Item A.\n'
     )
   })
+
+  it('should allow multiple calls to noCite to add more references', () => {
+    processor.noCite(['a'])
+    processor.noCite(['b'])
+    expect(processor.bibliography()).toEqual(
+      'Bloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n'
+    )
+  })
 })
 
 describe('locales', () => {
