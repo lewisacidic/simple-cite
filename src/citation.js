@@ -5,6 +5,6 @@ export default class Citation {
     this.properties.noteIndex = this.properties.noteIndex || 0
   }
   clone() {
-    return { ...this }
+    return new Citation(JSON.parse(JSON.stringify(this)))
   }
 }

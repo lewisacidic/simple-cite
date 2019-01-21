@@ -106,8 +106,9 @@ const styleSuite = ({
   suffix,
   both,
   suppressAuthor,
-  inText,
-  inTextBib,
+  inNarrative,
+  inNarrativeDisambig,
+  inNarrativeBib,
   normAndInText,
   noCite,
   noCiteAndNormal
@@ -186,22 +187,43 @@ const styleSuite = ({
       expect(cite.value).toEqual(suppressAuthor)
     })
 
-    it('should do an in-text citation', () => {
-      const citeA = processor.citeInText({ id: 'a' })
-      expect(citeA.value).toEqual(inText[0])
-
-      const citeB = processor.citeInText({ id: 'b' })
-      expect(citeB.value).toEqual(inText[1])
+    it('should do an in-narrative citation', () => {
+      const cite = processor.cite({
+        citationItems: [{ id: 'a' }],
+        properties: { 'in-narrative': true }
+      })
+      expect(cite.value).toEqual(inNarrative[0])
     })
 
-    it('should add in-text citations to bibliography', () => {
-      processor.citeInText({ id: 'a' })
-      expect(processor.bibliography()).toEqual(inTextBib)
+    it('should disambiguate in-narrative citations', () => {
+      const citeB = processor.cite({
+        citationItems: [{ id: 'b' }],
+        properties: { 'in-narrative': true }
+      })
+
+      const citeC = processor.cite({
+        citationItems: [{ id: 'c' }],
+        properties: { 'in-narrative': true }
+      })
+
+      expect(citeB.value).toEqual(inNarrativeDisambig[0])
+      expect(citeC.value).toEqual(inNarrativeDisambig[1])
     })
 
-    it('should work with normal and in-text citations', () => {
+    it('should add in-narrative citations to bibliography', () => {
+      processor.cite({
+        citationItems: [{ id: 'a' }],
+        properties: { 'in-narrative': true }
+      })
+      expect(processor.bibliography()).toEqual(inNarrativeBib)
+    })
+
+    it('should work with normal and in-narrative citations', () => {
       processor.cite({ citationItems: [{ id: 'a' }] })
-      processor.citeInText({ id: 'b' })
+      processor.cite({
+        citationItems: [{ id: 'b' }],
+        properties: { 'in-narrative': true }
+      })
 
       expect(processor.bibliography()).toEqual(normAndInText)
     })
@@ -234,8 +256,9 @@ const apaData = {
   suffix: '(Bloggs, 2016 and *passim*)',
   both: '(Bloggs, 2016, pp. 42--44 and *passim*)',
   suppressAuthor: '(2016)',
-  inText: ['Bloggs (2016)', 'Doe (2017)'],
-  inTextBib: 'Bloggs, J. (2016). Item A.\n',
+  inNarrative: ['Bloggs (2016)', 'Doe (2017)'],
+  inNarrativeDisambig: ['Jane Doe (2017)', 'John Doe (2018)'],
+  inNarrativeBib: 'Bloggs, J. (2016). Item A.\n',
   normAndInText: 'Bloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n',
   noCite: 'Doe, J. (2017). Item B.\n',
   noCiteAndNormal: 'Bloggs, J. (2016). Item A.\nDoe, J. (2017). Item B.\n'
@@ -258,8 +281,9 @@ const vancouverData = {
   suffix: '(1 and *passim*)',
   both: '(1 and *passim*)',
   suppressAuthor: '(1)',
-  inText: ['Reference 1', 'Reference 2'],
-  inTextBib: '1. Bloggs J. Item A. 2016. \n',
+  inNarrative: ['Reference 1', 'Reference 2'],
+  inNarrativeDisambig: ['Reference 1', 'Reference 2'],
+  inNarrativeBib: '1. Bloggs J. Item A. 2016. \n',
   normAndInText: '1. Bloggs J. Item A. 2016. \n2. Doe J. Item B. 2017. \n',
   noCite: '1. Doe J. Item B. 2017. \n',
   noCiteAndNormal: '1. Bloggs J. Item A. 2016. \n2. Doe J. Item B. 2017. \n'
