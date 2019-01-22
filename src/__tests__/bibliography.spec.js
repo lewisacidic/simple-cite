@@ -79,6 +79,13 @@ describe('Bibliography', () => {
 </div>`)
   })
 
+  it('wraps URLs with links', () => {
+    processor.noCite(['example-url'])
+    expect(processor.bibliography().value).toEqual(`<div class="csl-bib-body">
+  <div class="csl-entry">Walker, B. (2019). Online Article. <i>Journal of Examples</i>. Retrieved from <a href="https://www.testurl.com">https://www.testurl.com</a></div>
+</div>`)
+  })
+
   it('optionally renders a title', () => {
     processor.noCite(['example-a', 'example-b'])
     expect(processor.bibliography({ title: true }).value)

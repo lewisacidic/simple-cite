@@ -13,7 +13,9 @@ export default class Processor {
       retrieveItem: item => itemLookup[item],
       retrieveLocale: () => locale
     }
+
     this.engine = new citeproc.Engine(sys, style)
+    this.engine.opt.development_extensions.wrap_url_and_doi = true
     this.format = format
   }
 
