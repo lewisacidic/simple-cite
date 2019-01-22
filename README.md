@@ -28,13 +28,13 @@ A simple package for generating citations and bibliographies, wrapping the excel
 Download the package from NPM using [`npm`](https://npmjs.org):
 
 ```shell
-npm install --save simple-cite @citation/{style-apa,locale-en-US}
+npm install --save simple-cite style-apa locale-en-us
 ```
 
-or [yarn](https://yarnpkg.com/):
+or [`yarn`](https://yarnpkg.com/):
 
 ```shell
-yarn add simple-cite @citation/{style-apa,locale-en-US}
+yarn add simple-cite style-apa locale-en-us
 ```
 
 ## Simple Usage
@@ -45,10 +45,10 @@ Import the citation processor from the package, configure it with a CSL [style](
 import Processor from 'simple-cite'
 
 // citation formatting configuration
-import style from '@citation/style-apa'
+import style from 'style-apa'
 
 // localization configuration
-import locale from '@citation/locale-en-US'
+import locale from 'locale-en-US'
 
 // a list of citable items with relevant metadata
 import items from './references'
@@ -60,30 +60,71 @@ const processor = new Processor({
 })
 ```
 
-Make **citations** using the `cite` method, providing a [citation](#citation) data-structure as argument:
+### Making Citations
+
+`Citation` objects may be made using the `cite` method of the `Processor`, providing a [citation](#citation) datastructure as argument:
 
 ```js
-processor.cite({ citationItems: { id: 'hawking1988' } })
+const citation = processor.cite({ citationItems: [{ id: 'hawking1988' }] })
+```
+
+`Citation` objects maintain the value of a citation registered with the processor within their `value` property:
+
+```js
+citation.value
 // (Hawking, 1988)
 ```
 
-Make **in-text citations** using the `citeInText` method, providing a single [cite-item](#cite-item) as argument:
+This allows disambiguations to future citations and more to be made.
+For example, if we cite Lucy Hawking within the same context, we ought to disambiguate the authors according to the APA style.
+This would be tracked by the processor:
 
 ```js
-processor.citeInText({ id: 'hawking1988' })
+const lucyCitation = processor.cite({ citationItems: [{ id: 'hawking2000' }] })
+
+lucyCitation.value
+// (Lucy Hawking, 2000)
+
+citation.value
+// (Stephen Hawking, 1988)
+```
+
+As such, it is important to remember that _citation values may change while citations are being registered_.
+
+### Making Bibliographies
+
+A `Bibliography` object may be made using the `bibliography` method:
+
+```js
+const bibliography = processor.bibliography()
+```
+
+Like with `Citation`, this maintains the value of long form references for items previously cited by the processor with a `value` property:
+
+```js
+bibliography.value
+// Hawking, S. W. (1988). A brief history of time: from the big bang to black holes. Toronto: Bantam Books
+```
+
+Again, the value will update as citations are registered with the `Processor`.
+
+### In depth Usage
+
+In addition to simple citations, in-narrative citations by adding an `"in-narrative"` property to the citation:
+
+```js
+const citation = processor.cite({
+  citationItems: [{ id: 'hawking1988' }],
+  properties: { 'in-narrative': true }
+})
+citation.value
 // Hawking (1988)
 ```
 
-Register items to include without explicit citation (no-cites) with the `noCite` method, providing an array of cite-item ids as argument:
+Items to be included in bibliographies without explicit citation (no-cites) may be registered with the `noCite` method, which takes an array of [item](#items) ids as argument:
 
 ```js
 processor.noCite(['hawking1988'])
-```
-
-Make a bibliography for items previously cited by the processor using the `bibliography` method:
-
-```js
-processor.bibliography()
 ```
 
 ## Citation data structures
@@ -125,24 +166,35 @@ These data are most easily generated using a compatible citation manager, such a
 
 ### Cite-Items
 
-A cite-item corresponds to a single in-document reference to an [item](#items) via matching id property, with optional _locator_, _prefix_ and _suffix_ annotations.
-The option to not include reference to the author (_suppress-author_) or include only the author (_author-only_).
-
-For example,
-
-```json
-{ "id": "hawking1988", "prefix": "see", "suppress-author": true }
-```
-
-### Citations
-
-A citation corresponds to a collection of [cite-items](#cite-items) referenced at a single point within a document, with a properties object providing metadata about the citation within the text, for example the index of the footnote in which it is located.
+A cite-item corresponds to a single in-document reference to an [item](#items) via matching id property, with optional `locator` and `label`, `prefix` and `suffix` annotations, and the option to not include reference to the author (`"suppress-author"`) or include _only_ the author (`"author-only"`).
 
 For example,
 
 ```json
 {
-  "citationItems": [{ "id": "hawking1988", "locator": "pp. 42--44" }],
+  "id": "hawking1988",
+  "label": "page",
+  "locator": "140",
+  "prefix": "see",
+  "suffix": "for the most expensive equation in history"
+}
+```
+
+### Citations
+
+A citation corresponds to a collection of [cite-items](#cite-items) referenced at a single point within a document, with a properties object providing metadata about the citation within the text, for example the index of the footnote in which it is located (if using a "note"-based [citation style](#citation-styles)).
+
+For example,
+
+```json
+{
+  "citationItems": [
+    {
+      "id": "hawking1988",
+      "label": "chapter",
+      "locator": "3"
+    }
+  ],
   "properties": {
     "noteIndex": 2
   }
@@ -152,8 +204,8 @@ For example,
 ### Citation Styles
 
 The CSL style may be specified using either the XML-based Citation Style Language, or a derived JSON representation.
-These may be found for a great many journals in the [official CSL style repository](https://github.com/citation-style-language/styles), or obtained as a JavaScript package hosted on NPM under the scope `@citation/style-*`.
+These may be found for a great many journals in the [official CSL style repository](https://github.com/citation-style-language/styles), or obtained as a JavaScript package hosted on NPM under the scope `style-*`.
 
 ### Citation Locales
 
-The CSL locale may be specified in the same way, and obtained from the [official CSL locale repository](https://github.com/citation-style-language/locales), or obtained from NPM under the scope `@citation/locale-*`.
+The CSL locale may be specified in the same way, and obtained from the [official CSL locale repository](https://github.com/citation-style-language/locales), or obtained from NPM under the scope `locale-*`.
