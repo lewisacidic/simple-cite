@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bibliography apa renders a book 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">Tolkien, J. R. R. (1986). <i>The fellowship of the ring: being the first part of The lord of the rings</i> (2nd ed). Boston: Houghton Mifflin Co.</div>
+</div>"
+`;
+
+exports[`Bibliography apa renders a conference paper 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">Krizhevsky, A., Sutskever, I., &#38; Hinton, G. E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. In <i>Advances in Neural Information Processing Systems 25</i> (pp. 1097–1105).</div>
+</div>"
+`;
+
+exports[`Bibliography apa renders a journal article 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">Lowry, O. H., Rosebrough, N. J., Farr, A. L., &#38; Randall, R. J. (1951). Protein measurement with the Folin phenol reagent. <i>Journal of Biological Chemistry</i>, <i>193</i>(1), 265–275.</div>
+</div>"
+`;
+
+exports[`Bibliography apa renders a webpage 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">CSL search by example. (n.d.). Retrieved 15 December 2012, from <a href=\\"http://editor.citationstyles.org/searchByExample/\\">http://editor.citationstyles.org/searchByExample/</a></div>
+</div>"
+`;
+
+exports[`Bibliography apa renders multiple references 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">Bloggs, J. (2016). Item A. <i>Journal of Examples</i>, <i>2</i>(4), 42–64.</div>
+  <div class=\\"csl-entry\\">Doe, J. (2017). Item B. <i>Journal of Examples</i>, <i>4</i>(2), 22–33.</div>
+</div>"
+`;
+
+exports[`Bibliography vancouver renders a book 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">1. </div><div class=\\"csl-right-inline\\">Tolkien JRR. The fellowship of the ring: being the first part of The lord of the rings. 2nd ed. Boston: Houghton Mifflin Co; 1986. 423 p. (The lord of the rings / by J.R.R. Tolkien).</div>
+   </div>
+</div>"
+`;
+
+exports[`Bibliography vancouver renders a conference paper 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">1. </div><div class=\\"csl-right-inline\\">Krizhevsky A, Sutskever I, Hinton GE. ImageNet Classification with Deep Convolutional Neural Networks. In: Advances in Neural Information Processing Systems 25. 2012. p. 1097–1105.</div>
+   </div>
+</div>"
+`;
+
+exports[`Bibliography vancouver renders a journal article 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">1. </div><div class=\\"csl-right-inline\\">Lowry OH, Rosebrough NJ, Farr AL, Randall RJ. Protein measurement with the Folin phenol reagent. Journal of biological chemistry. 1951;193(1):265–275.</div>
+   </div>
+</div>"
+`;
+
+exports[`Bibliography vancouver renders a webpage 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">1. </div><div class=\\"csl-right-inline\\">CSL search by example [Internet]. Citation Style Editor. [cited 15 December 2012]. Available at: <a href=\\"http://editor.citationstyles.org/searchByExample/\\">http://editor.citationstyles.org/searchByExample/</a></div>
+  </div>
+</div>"
+`;
+
+exports[`Bibliography vancouver renders multiple references 1`] = `
+"<div class=\\"csl-bib-body\\">
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">1. </div><div class=\\"csl-right-inline\\">Bloggs J. Item A. Journal of Examples. 2016;2(4):42–64.</div>
+   </div>
+  <div class=\\"csl-entry\\">
+    <div class=\\"csl-left-margin\\">2. </div><div class=\\"csl-right-inline\\">Doe J. Item B. Journal of Examples. 2017;4(2):22–33.</div>
+   </div>
+</div>"
+`;
